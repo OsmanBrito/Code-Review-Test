@@ -46,18 +46,24 @@ class _MainScreenState extends State<MainScreen> {
           body: Center(
             child: Stack(
               children: [
-                state is Loading ? CustomLoading() : SizedBox(),
-                state is Error ? Text(state.error.toString()) : SizedBox(),
+                state is Loading
+                    ? CustomLoading()
+                    : state is Error
+                        ? Text(state.error.toString())
+                        : SizedBox(),
                 if (state is Fetched)
                   ListView(
                       children: state.list.map(
-                    (s) {
-                      if (state.list.indexOf(s) % 2 == 0)
+                    (String s) {
+                      if (state.list.indexOf(s) % 2 == 0) {
                         s = 'I dont like even numbers';
+                      }
                       return Card(
                         shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(20))),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                        ),
                         child: Container(
                           color: Colors.green,
                           child: Center(

@@ -13,7 +13,8 @@ class MockApiService {
     var showError = Random().nextBool();
     if (showError) {
       return left(Exception('Something went wrong ¯\_(ツ)_/¯'));
-    } else
+    } else {
       return right(items);
+    }
   }
 }
